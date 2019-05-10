@@ -5,53 +5,62 @@
 using namespace std;
 
 class Human{
-private:
-    string name;
+    std::string name;
     int age;
     char sex;
 
+protected:
+    Human(std::string nameIn, int ageIn, char sexIn){
+        name = nameIn;
+        age = ageIn;
+        sex = sexIn;
+    }
+
 public:
-    Human(){
-        name = " ";
-        age = 0;
-        sex = " ";
+
+    Human(){}
+
+    void setName(std::string nameIn) {
+        name = nameIn;
     }
-    Human(string n,int old,char mf){
-        name=n;
-        age=old;
-        sex=mf;
+    void setAge(int ageIn) {
+        name = ageIn;
     }
-    void setName(string);
-    void setAge(int);
-    void setSex(char);
-    string getName();
-    int getAge();
-    char getSex();
+    void setSex(char sexIn) {
+        name = sexIn;
+    }
+    std::string getName() {
+        return name;
+    }
+    int getAge() {
+        return age;
+    }
+    char getSex() {
+        return sex;
+    }
+
+    ~Human(){
+        std::cout << "Destructing human \n";
+    }
 };
 
-void Human::setName(string str){
-    name=str;
-}
-void Human::setAge(int num){
-    age=num;
-}
-void Human::setSex(string sx){
-    sex=sx;
-}
-string Human::getName(){
-    return name;
-}
-int Human::getAge(){
-    return age;
-}
-char Human::getSex(){
-    return sex;
+
+void printInfo(Human human) {
+
+    std::string name = human.getName();
+    int age = human.getAge();
+    char sex = human.getSex();
+
+    std::cout << "Print Human: " << std::endl;
+    std::cout << "Name : " << name << std::endl;
+    std::cout << "Age : " << age << std::endl;
+    std::cout << "Sex : " << sex << std::endl;
 }
 
 
 class Child:public Human{
 private:
-    string momName, dadName;
+    std::string momName, dadName;
     int allowance;
 public:
     Child(){
@@ -68,16 +77,16 @@ public:
     void setmName(string);
     void setdName(string);
     void setAllowance(int);
-    string getmName();
-    string getdName();
+    std::string getmName();
+    std::string getdName();
     int getAllowance();
     void printParents();
 };
 
-void Child::setmName(string MomsName){
+void Child::setmName(std::string MomsName){
     momName = MomsName;
 }
-void Child::setdName(string DadsName){
+void Child::setdName(std::string DadsName){
     momName = DadsName;
 }
 void Child::setAllowance(int money){
@@ -103,21 +112,22 @@ private:
     vector<string> Children;  //save the name of the children
 public:
     Parent(){
-        //declare here
     }
 
-    Parent(string name, int age, char sex){
-        //input her
+    Parent(std::string name, int age, char sex){
+        //input here
     }
 
-    void printChild{
-    //print children vector
-    }
+    string printChild{
+    for(int i=0; i<3; i++){
+        cout<<" "<<names[i]<<endl;
+        }
+    };
     void setChild(){
-    //input children into children vector
+    std::string names[3] = {"Bart", "Lisa", "Maggie"};
     }
-    void setChildAllowance(allowance, child){
-    child.setAllowance(allowance);
+    void setChildAllowance(int allowance, std::string child){
+    Child.setAllowance(allowance);
     }
 };
 
@@ -128,17 +138,11 @@ int main(){
     //set parent2
     Parent Homer("Homer", 36, "m");
     //set child 1
-    Child Bart("Bart" ,10, "m", "Marge", "Homer"", 0);
+    Child Bart("Bart" ,10, "m", "Marge", "Homer", 0);
     //set child 2
-    Child Lisa("Lisa" ,12, "f","Marge", "Homer"", 0);
+    Child Lisa("Lisa" ,12, "f","Marge", "Homer", 0);
     //set child 3
-    Child Maggie("Maggie" ,3, "f","Marge", "Homer"", 0);
-
-    //set children inside parents vector
-    Marge.setChild(Bart);
-    Marge.setChild(Lisa);
-    Homer.setChild(Bart);
-    Homer.setChild(Lisa);
+    Child Maggie("Maggie" ,3, "f","Marge", "Homer", 0);
 
     //print barts allowance
     cout<<"Bart's Allowance: "<<Bart.getAllowance()<<endl;
@@ -150,12 +154,8 @@ int main(){
     cout<<"Bart's Allowance: "<<Bart.getAllowance()<<endl;
 
     //have bart print out all of his parents
-    cout<<"Bart's Parrents: "<<Bart.getParents()<<endl;
+    cout<<"Bart's Parrents: "<<Bart.printParents()<<endl;
 
-    void printInfo(Human){
-        //print all info about person
-    }
-
-    //printInfo(Marge);
-    //printInfo(Lisa);
+    printInfo(Marge);
+    printInfo(Lisa);
 }
